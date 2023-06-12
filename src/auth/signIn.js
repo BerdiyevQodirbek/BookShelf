@@ -27,21 +27,20 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const secret = data.get("secret");
-    const email = data.get("email");
+    const key = data.get("key");
     if (!secret) {
       setmessage("secret");
       setIsOpen(true);
     }
-    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setmessage("email address");
+    if (!key) {
+      setmessage("secret");
       setIsOpen(true);
     }
-
-    if (email && secret) {
-      const res = await signIn({ data: { email, secret } });
-      if (res?.data?.key) {
-        setUserKey(res?.data?.key);
-        setUser(res?.data?.key);
+    if (key && secret) {
+      const res = await signIn({ data: { key, secret } });
+      if (res?.data) {
+        setUserKey(res?.data);
+        setUser(res?.data);
       }
     }
   };
@@ -74,10 +73,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="key"
+              label="Key"
+              name="key"
+              autoComplete="key"
               autoFocus
             />
             <TextField

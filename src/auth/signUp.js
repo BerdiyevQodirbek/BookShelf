@@ -56,21 +56,11 @@ export default function SignUp() {
           secret,
         },
       });
-      if (res?.data?.key) {
-        setUserKey(res?.data?.key);
-        setUser(res?.data?.key);
+      if (res?.data) {
+        setUserKey(res?.data);
+        setUser(res?.data);
       }
     }
-    // ["secret", "email", "key", "name"].some((item) => {
-    //   console.log(data.get(item));
-    //   if (data.get(item) == "") {
-    //     setMessage("");
-    //     setIsOpen(false);
-    //   } else {
-    //     setMessage(item);
-    //     setIsOpen(true);
-    //   }
-    // });
   };
 
   return (

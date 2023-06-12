@@ -8,7 +8,7 @@ export function signIn({ data }) {
       url: `${mainUrl}/myself`,
       headers: {
         "Content-Type": "application/json",
-        key: data?.secret,
+        key: data?.key,
         sign: sign({
           url: "myself",
           method: "GET",
